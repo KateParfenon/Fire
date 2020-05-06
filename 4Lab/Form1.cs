@@ -51,7 +51,7 @@ namespace _4Lab
 
         private void TrackBar1_Scroll(object sender, EventArgs e)
         {
-            emiter.Life = trackBar1.Value;
+            emiter.life = trackBar1.Value;
         }
     }
 }

@@ -92,8 +92,8 @@ namespace _4Lab
     public abstract class EmiterBase
     {
         List<Particle> particles = new List<Particle>();
+        public static Random rand = new Random();
 
-      
         int particleCount = 0;
        
         public int ParticlesCount
@@ -159,13 +159,13 @@ namespace _4Lab
     public class PointEmiter : EmiterBase
     {
         public Point Position;
-        public float Life;
+        public float life = 20;
 
         public override Particle CreateParticle()
         {
             var particle = ParticleImage.Generate();
             particle.image = Properties.Resources.fire;
-            particle.Life = Life;
+            particle.Life = life + rand.Next(10);
             particle.X = Position.X;
             particle.Y = Position.Y;
             return particle;
@@ -177,7 +177,7 @@ namespace _4Lab
             particle.Speed = 1 + Particle.rand.Next(10);
             particle.Direction = Particle.rand.Next(360);
             particle.Radius = 2 + Particle.rand.Next(40);
-            particle.Life = Life;
+            particle.Life = life + rand.Next(50);
             particle.X = Position.X;
             particle.Y = Position.Y;
         }
@@ -202,7 +202,7 @@ namespace _4Lab
             particle.image = Properties.Resources.fire;
 
             particle.Direction = this.direction + Particle.rand.Next(-Spread / 2, Spread / 2);
-            particle.Life = Life;
+            particle.Life = life + rand.Next(10);
             particle.X = Position.X;
             particle.Y = Position.Y;
             return particle;
@@ -215,10 +215,9 @@ namespace _4Lab
 
             if (particler != null)
             {
-                particler.Life = 10 + Particle.rand.Next(30);
-                particler.Speed = 1 + Particle.rand.Next(10);
+                
 
-                particle.Life = Life;
+                particler.Life = life + rand.Next(10);
                 particler.Direction = this.direction + Particle.rand.Next(-Spread / 2, Spread / 2);
 
                 particler.X = Position.X;
